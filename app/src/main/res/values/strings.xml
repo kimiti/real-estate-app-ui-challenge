@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Real Estate app</string>
+
+    <string name="title">Perfect choice\n for your future</string>
+    <string name="loren">Lorem ipsum is standard placeholder text used in design and publishing to show how a layout looks with text</string>
 </resources>
