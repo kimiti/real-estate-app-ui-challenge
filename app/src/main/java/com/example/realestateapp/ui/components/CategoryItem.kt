@@ -1,4 +1,7 @@
 package com.example.realestateapp.ui.components
 
-class CategoryItem {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun CategoryItem() {
 }
