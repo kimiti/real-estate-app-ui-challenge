@@ -14,6 +14,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.realestateapp.R
+import com.example.realestateapp.ui.components.CategoriesRow
 import com.example.realestateapp.ui.components.HeaderSection
 import com.example.realestateapp.ui.components.SearchRow
 
@@ -32,5 +33,7 @@ fun MainScreen() {
         item { HeaderSection() }
         item { Spacer(modifier = Modifier.height(16.dp)) }
         item { SearchRow() }
+        item { Spacer(modifier = Modifier.height(16.dp)) }
+        item { CategoriesRow() }
     }
 }
