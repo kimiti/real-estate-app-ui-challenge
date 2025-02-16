@@ -67,33 +67,35 @@ fun PropertyCard(item: Property) {
                     .background(blue)
                     .padding(horizontal = 16.dp, vertical = 6.dp)
             )
-
-            Column(
+        }
+        Column(
+            modifier = Modifier
+                .clip(RoundedCornerShape(30.dp))
+                .padding(horizontal = 16.dp)
+        ) {
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = item.title,
+                color = black,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp
+            )
+            Text(
+                text = item.address,
+                color = grey,
+                fontSize = 13.sp
+            )
+            Spacer(Modifier.height(8.dp))
+            Row(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(30.dp))
-                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth()
+                    .padding(bottom = 12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = item.title,
-                    color = black,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
-                )
-                Text(
-                    text = item.address,
-                    color = grey,
-                    fontSize = 13.sp
-                )
-                Spacer(Modifier.height(8.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 12.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    
-                }
+                MetaChip(R.drawable.bed, "${item.bed} Bed")
+                MetaChip(R.drawable.bath, "${item.bed} Bath")
+                MetaChip(R.drawable.garage, if(item.isGarage) "car garage" else "non car garage")
+                MetaChip(R.drawable.size, "${item.bed} m2")
             }
         }
     }
