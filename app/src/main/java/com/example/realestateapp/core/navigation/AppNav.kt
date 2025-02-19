@@ -3,14 +3,18 @@ package com.example.realestateapp.core.navigation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,10 +30,58 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.realestateapp.R
+import com.example.realestateapp.feature.home.MainScreen
+import com.example.realestateapp.feature.splash.SplashScreen
 
+
+@Composable
+fun AppNav() {
+    val navController = rememberNavController()
+    val backStack by navController.currentBackStackEntryAsState()
+    val currentRoute = backStack?.destination?.route
+    val showBottomBar = currentRoute in bottomDestinations.map { it.route }
+
+    Scaffold(containerColor = colorResource(R.color.lightGrey)) { inner ->
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(inner)
+        ) {
+            NavHost(
+                navController = navController,
+                startDestination = "splash",
+                modifier = Modifier.fillMaxSize()
+            ) {
+                composable("splash") {
+                    SplashScreen(
+                        onStartClick = { navController.navigate(Screen.Home.route){
+                            popUpTo("splash") { inclusive = true }
+                            launchSingleTop = true
+                            restoreState = true
+                        } }
+                    )
+
+                }
+
+                composable(Screen.Home.route) { MainScreen() }
+            }
+            if(showBottomBar){
+                BottomBar(
+                    navController = navController,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .navigationBarsPadding()
+                        .padding(16.dp)
+                )
+            }
+        }
+    }
+}
 
 sealed class Screen(val route: String, val icon: Int) {
     data object Home : Screen("home", R.drawable.bottom_btn1)
@@ -61,7 +113,6 @@ fun BottomBar(
             .background(colorResource(R.color.black))
             .height(80.dp)
             .padding(4.dp),
-        containerColor = Color.Transparent,
         tonalElevation = 0.dp
     ) {
         bottomDestinations.forEach { screen ->
