@@ -36,6 +36,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.realestateapp.R
 import com.example.realestateapp.feature.home.MainScreen
+import com.example.realestateapp.feature.profile.ProfileScreen
 import com.example.realestateapp.feature.splash.SplashScreen
 
 
@@ -69,6 +70,7 @@ fun AppNav() {
                 }
 
                 composable(Screen.Home.route) { MainScreen() }
+                composable(Screen.Profile.route) { ProfileScreen(navController) }
             }
             if(showBottomBar){
                 BottomBar(
