@@ -10,10 +10,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.realestateapp.R
 import com.example.realestateapp.ui.components.TopBar
 
-@Preview
 @Composable
 fun ProfileScreen(navController: NavController) {
     LazyColumn(
@@ -24,4 +24,11 @@ fun ProfileScreen(navController: NavController) {
     ) {
         item { TopBar(onBack = { navController.navigateUp() }) }
     }
+}
+
+@Preview
+@Composable
+fun ProfileScreenPreview(){
+    val navController = rememberNavController()
+    ProfileScreen(navController = navController)
 }
