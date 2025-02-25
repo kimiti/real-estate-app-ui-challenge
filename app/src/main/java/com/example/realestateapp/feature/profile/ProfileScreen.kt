@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.realestateapp.R
+import com.example.realestateapp.ui.components.OptionRow
 import com.example.realestateapp.ui.components.TopBar
 
 @Composable
@@ -82,6 +83,14 @@ fun ProfileScreen(navController: NavController) {
 
         }
         item { Spacer(Modifier.height(24.dp)) }
+        item { OptionRow(title = "Account Information") }
+        item { OptionRow(title = "Security") }
+        item { OptionRow(title = "Notification") }
+        item { OptionRow(title = "Language") }
+        item { OptionRow(title = "Team & Condition") }
+        item { OptionRow(title = "Privacy Policy") }
+        item { Spacer(Modifier.height(24.dp)) }
+
     }
 }
 
